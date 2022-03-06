@@ -6,3 +6,5 @@ services:
 
   web:
     image: httpd
+    ports:
+      - 80

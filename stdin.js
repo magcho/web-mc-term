@@ -16,15 +16,15 @@ const term = pty.spawn("bash", [], {
 });
 
 term.on("data", function (data) {
-  console.log(Date.now(), data);
+  console.log(Date.now(), data.trim());
   // process.stdout.write(data);
 });
 
+// const startupCommand = "docker-compose exec web bash";
+const startupCommand = "docker attach $(docker-compose ps -q web)";
 
-const startupCommand = 'docker-compose exec bash bash'
 setTimeout(() => {
-  const
-  term.write("\r");
+  term.write(`${startupCommand}\r`);
 }, 1000);
 
 const reader = readline.createInterface({

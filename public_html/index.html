@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/xterm.js/dist/xterm.css">
+  </head>
+  <body>
+    <div id="terminal"></div>
+    <script src="/xterm.js/dist/xterm.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var term = new Terminal();
+      var socket = io();
+      term.open(document.getElementById('terminal'));
+      term.on('data', d => socket.emit('data', d));
+      socket.on('data', d => term.write(d));
+    </script>
+  </body>
+</html>

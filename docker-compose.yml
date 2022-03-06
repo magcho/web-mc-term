@@ -4,7 +4,8 @@ services:
     image: bash
     tty: true
 
-  web:
-    image: httpd
-    ports:
-      - 80
+  mc:
+    image: itzg/minecraft-server
+    environment:
+      - EULA=true
+    tty: true

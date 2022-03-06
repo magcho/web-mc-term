@@ -1,0 +1,8 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  bash:
+    image: bash
+    tty: true
+
+  web:
+    image: httpd

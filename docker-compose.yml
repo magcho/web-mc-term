@@ -4,8 +4,9 @@ services:
     image: bash
     tty: true
     stdin_open: true
-  # mc:
-  #   image: itzg/minecraft-server
-  #   environment:
-  #     - EULA=true
-  #   tty: true
+  mc:
+    image: itzg/minecraft-server
+    environment:
+      - EULA=true
+    tty: true
+    stdin_open: true

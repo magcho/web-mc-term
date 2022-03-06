@@ -19,15 +19,17 @@ app.use("/", express.static("public_html"));
 
 // socket
 socket.on("connection", (socket) => {
-  console.log("socket.io connected");
+  console.log("[REMOTE CONNECTED]");
   term.on("data", function (data) {
     socket.emit("data", data);
   });
-  socket.on("data", (data) => term.write(data));
+  socket.on("data", (data) => {
+    term.write(data);
+  });
 });
 
 // init
-const startupCommand = "docker attach $(docker-compose ps -q bash)";
+const startupCommand = "docker attach $(docker-compose ps -q mc)";
 setTimeout(() => {
   term.write(`${startupCommand}\r`);
 }, 1000);

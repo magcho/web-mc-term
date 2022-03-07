@@ -1,14 +1,14 @@
 {
-  "name": "rtty",
+  "name": "web-md-term",
   "version": "1.0.0",
   "description": "",
-  "main": "stdin.js",
+  "main": "main.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "magcho",
-  "license": "ISC",
+  "license": "",
   "dependencies": {
     "express": "^4.17.3",
     "node-pty": "^0.10.1",

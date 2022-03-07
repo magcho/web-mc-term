@@ -1,0 +1,14 @@
+
+[Unit]
+Description=minecraft control terminal on web
+After=network-online.target
+
+[Service]
+Restart=on-failure
+WorkingDirectory=/home/ubuntu/git/web-mc-term/
+ExecStart=/bin/node /xxx/web-mc-term/main.js
+User=xxxxxx
+Group=xxxxxx
+
+[Install]
+WantedBy=multi-user.target

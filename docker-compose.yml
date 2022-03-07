@@ -1,12 +1,34 @@
 version: "3.9"  # optional since v1.27.0
 services:
-  bash:
-    image: bash
-    tty: true
-    stdin_open: true
-  mc:
-    image: itzg/minecraft-server
-    environment:
-      - EULA=true
-    tty: true
-    stdin_open: true
+  # bash:
+  #   image: bash
+  #   tty: true
+    # stdin_open: true
+  # mc:
+  #   image: itzg/minecraft-server
+  #   environment:
+  #     - EULA=true
+  #   tty: true
+  #   stdin_open: true
+
+  auth:
+    image: quay.io/oauth2-proxy/oauth2-proxy
+    ports:
+      - 4180:4180
+    volumes:
+      - ./docker/auth/oauth2-proxy.cfg:/oauth2-proxy.cfg
+    command:
+      - --config=/oauth2-proxy.cfg
+  proxy:
+    image: bitnami/openresty
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/proxy/rpx.conf:/opt/bitnami/openresty/nginx/conf/server_blocks/rpx.conf
+    depends_on:
+      - auth
+      - web
+  web:
+    image: httpd
+    ports:
+      - 8888:80
